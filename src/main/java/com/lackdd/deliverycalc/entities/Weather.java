@@ -21,12 +21,12 @@ public class Weather {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String station;
-    String WMO_code;
-    BigDecimal air_temperature;
-    BigDecimal wind_speed;
-    String weather_phenomenon;
-    LocalDateTime timestamp;
+    private String stationName;
+    private String WMOCode;
+    private BigDecimal airTemperature;
+    private BigDecimal windSpeed;
+    private String weatherPhenomenon;
+    private LocalDateTime timestamp;
 }
