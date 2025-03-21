@@ -22,6 +22,7 @@ public class DeliveryFeeController {
     public ResponseEntity<String> getDeliveryFee(@RequestParam(name = "cityName") String cityName, @RequestParam(name = "vehicle") String vehicle) {
         try {
             String deliveryFee = deliveryFeeService.getDeliveryFee(cityName, vehicle);
+            System.out.println(deliveryFee);
             return ResponseEntity.ok(deliveryFee);
         } catch (ResponseStatusException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request failed: " + e);
