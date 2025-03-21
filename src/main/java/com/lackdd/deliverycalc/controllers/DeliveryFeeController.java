@@ -13,15 +13,15 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api")
 public class DeliveryFeeController {
-    private final DeliveryFeeService service;
+    private final DeliveryFeeService deliveryFeeService;
 
     @Autowired
-    public DeliveryFeeController(DeliveryFeeService service) {this.service = service;}
+    public DeliveryFeeController(DeliveryFeeService deliveryFeeService) {this.deliveryFeeService = deliveryFeeService;}
 
     @GetMapping("/delivery-fee")
     public ResponseEntity<String> getDeliveryFee(@RequestParam(name = "cityName") String cityName, @RequestParam(name = "vehicle") String vehicle) {
         try {
-            String deliveryFee = service.getDeliveryFee(cityName, vehicle);
+            String deliveryFee = deliveryFeeService.getDeliveryFee(cityName, vehicle);
             return ResponseEntity.ok(deliveryFee);
         } catch (ResponseStatusException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request failed: " + e);

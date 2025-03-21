@@ -22,7 +22,7 @@ public class ScheduledTasks {
     // using https://spring.io/guides/gs/scheduling-tasks as basis for learning
 
     //@Scheduled(cron = "0 15 * * * *")
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 300000)
     public void reportCurrentTime() {
         weatherService.fetchWeatherData();
     }
