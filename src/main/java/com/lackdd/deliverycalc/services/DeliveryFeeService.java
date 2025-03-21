@@ -1,16 +1,29 @@
 package com.lackdd.deliverycalc.services;
 
+import com.lackdd.deliverycalc.entities.Weather;
+import com.lackdd.deliverycalc.repositories.WeatherRepository;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class DeliveryFeeService {
     private static final Logger logger = LoggerFactory.getLogger(DeliveryFeeService.class);
 
+    private final WeatherRepository weatherRepository;
+
+    @Autowired
+    DeliveryFeeService(WeatherRepository weatherRepository) {this.weatherRepository = weatherRepository;}
+
     public String getDeliveryFee(String cityName, String vehicle) {
+        LocalDateTime oneHourAgo = LocalDateTime.now().minusHours(1);
+        List<Weather> currentWeather = weatherRepository.findByLatestDate(oneHourAgo);
+
         BigDecimal RBF;
         switch (cityName.toLowerCase()) {
             case "tallinn":
