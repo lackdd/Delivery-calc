@@ -17,7 +17,7 @@ public class ScheduledTasks {
 
     private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(cron = "0 15 * * * *")
     public void reportCurrentTime() {
         log.info("Time is {}", dateFormat.format(new Date()));
     }
