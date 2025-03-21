@@ -26,9 +26,9 @@ public class WeatherService {
 
             WeatherData weatherData = xmlMapper.readValue(response, WeatherData.class);
             List<WeatherStation> filteredStations = weatherData.getStations().stream()
-                    .filter(station -> "Tallinn-Harku".equals(station.getName()))
+                    .filter(station -> "Tallinn-Harku".equals(station.getName()) || "Tartu-Tõravere".equals(station.getName()) || "Pärnu".equals(station.getName()))
                     .collect(Collectors.toList());
-            System.out.println("Filtered Stations: " + filteredStations);
+            System.out.println("Filtered Stations: " + filteredStations.stream().map(WeatherStation::getName).collect(Collectors.toList()));
         } catch (Exception e) {
             e.printStackTrace();
         }
